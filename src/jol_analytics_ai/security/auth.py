@@ -11,13 +11,24 @@ from jol_analytics_ai.config import settings
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
+_BCRYPT_MAX_BYTES = 72
+
+
+def _validate_password_length(password: str) -> None:
+    """Raise ValueError if password exceeds bcrypt's 72-byte limit."""
+    if len(password.encode("utf-8")) > _BCRYPT_MAX_BYTES:
+        raise ValueError(f"Password exceeds bcrypt's {_BCRYPT_MAX_BYTES}-byte limit.")
+
+
 def hash_password(password: str) -> str:
     """Hash a plaintext password."""
+    _validate_password_length(password)
     return pwd_context.hash(password)  # type: ignore[no-any-return]
 
 
 def verify_password(plain: str, hashed: str) -> bool:
     """Verify a plaintext password against its hash."""
+    _validate_password_length(plain)
     return pwd_context.verify(plain, hashed)  # type: ignore[no-any-return]
 
 

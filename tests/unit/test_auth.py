@@ -1,5 +1,7 @@
 """Unit tests for JWT authentication."""
 
+import pytest
+
 from jol_analytics_ai.security.auth import (
     create_access_token,
     decode_access_token,
@@ -17,6 +19,21 @@ class TestPasswordHashing:
     def test_wrong_password_fails(self) -> None:
         hashed = hash_password("correct_password")
         assert verify_password("wrong_password", hashed) is False
+
+    def test_hash_rejects_password_over_72_bytes(self) -> None:
+        long_password = "a" * 73
+        with pytest.raises(ValueError, match="72-byte"):
+            hash_password(long_password)
+
+    def test_verify_rejects_password_over_72_bytes(self) -> None:
+        hashed = hash_password("short")
+        with pytest.raises(ValueError, match="72-byte"):
+            verify_password("a" * 73, hashed)
+
+    def test_hash_accepts_exactly_72_bytes(self) -> None:
+        password_72 = "a" * 72
+        hashed = hash_password(password_72)
+        assert verify_password(password_72, hashed) is True
 
 
 class TestJWT:
