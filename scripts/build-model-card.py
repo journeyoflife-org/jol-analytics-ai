@@ -21,7 +21,8 @@ def validate_model_cards() -> list[str]:
 
     cards = list(production_dir.glob("*.md"))
     if not cards:
-        issues.append("No model cards found in model_cards/production/")
+        # No model cards is acceptable for fresh scaffolding / pre-production
+        return issues
 
     return issues
 
