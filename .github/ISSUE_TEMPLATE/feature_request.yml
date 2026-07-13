@@ -1,0 +1,39 @@
+name: Feature Request
+description: Propose a new feature for jol-analytics-ai
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the feature and its use case.
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation & Use Case
+    validations:
+      required: true
+  - type: textarea
+    id: gdpr-impact
+    attributes:
+      label: GDPR & Compliance Impact
+      description: Does this feature process personal data? Require DPIA? Involve automated decision-making (Art. 22)?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+  - type: dropdown
+    id: risk-level
+    attributes:
+      label: Risk Level
+      options:
+        - Low
+        - Medium
+        - High (requires compliance review)

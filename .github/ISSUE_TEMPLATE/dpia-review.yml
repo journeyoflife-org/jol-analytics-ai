@@ -1,0 +1,53 @@
+name: DPIA Review
+description: Request a Data Protection Impact Assessment review
+labels: ["dpia", "compliance", "gdpr"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        DPIA reviews are mandatory for high-risk AI processing per GDPR Art. 35.
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature / System Under Assessment
+    validations:
+      required: true
+  - type: textarea
+    id: data-types
+    attributes:
+      label: Personal Data Types Processed
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose of Processing
+    validations:
+      required: true
+  - type: textarea
+    id: automated-decisions
+    attributes:
+      label: Automated Decision-Making (Art. 22)
+      description: Does the system make automated decisions with legal/significant effects?
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Identified Risks to Data Subjects
+    validations:
+      required: true
+  - type: textarea
+    id: mitigations
+    attributes:
+      label: Proposed Mitigations
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      options:
+        - Pre-deployment (blocking)
+        - Periodic review
+        - Post-incident

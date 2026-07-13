@@ -1,0 +1,54 @@
+name: Compliance Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/jol_analytics_ai/ml/**'
+      - 'src/jol_analytics_ai/anonymization/**'
+      - 'src/jol_analytics_ai/security/**'
+      - 'src/jol_analytics_ai/rag/**'
+      - 'model_cards/**'
+      - 'compliance/**'
+
+jobs:
+  compliance-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt
+          pip install -e .
+
+      - name: Check model cards exist for production models
+        run: |
+          python scripts/build-model-card.py --validate
+
+      - name: Verify k-anonymity compliance
+        run: |
+          python scripts/verify-k-anonymity.py --check
+
+      - name: Run PII audit
+        run: |
+          python scripts/run-pii-audit.py --ci-mode
+
+      - name: Run security tests
+        run: |
+          pytest tests/security/ -v
+
+      - name: Run fairness tests
+        run: |
+          pytest tests/fairness/ -v
+
+      - name: Compliance report
+        if: always()
+        run: |
+          echo "Compliance check completed"
+          echo "Review results above for any failures"

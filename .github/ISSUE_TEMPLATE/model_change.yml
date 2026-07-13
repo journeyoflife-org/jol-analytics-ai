@@ -1,0 +1,49 @@
+name: Model Change
+description: Propose changes to production ML models
+labels: ["model-change", "compliance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Model changes require updated model cards and compliance review per GDPR Art. 22.
+  - type: textarea
+    id: model-name
+    attributes:
+      label: Model Name & Version
+    validations:
+      required: true
+  - type: textarea
+    id: change-description
+    attributes:
+      label: Change Description
+    validations:
+      required: true
+  - type: textarea
+    id: training-data
+    attributes:
+      label: Training Data Changes
+      description: Any changes to training data? PII audit status?
+    validations:
+      required: true
+  - type: textarea
+    id: fairness
+    attributes:
+      label: Fairness & Bias Assessment
+    validations:
+      required: true
+  - type: textarea
+    id: performance
+    attributes:
+      label: Performance Metrics
+    validations:
+      required: true
+  - type: checkboxes
+    id: compliance-checklist
+    attributes:
+      label: Compliance Checklist
+      options:
+        - label: Model card updated
+        - label: Fairness tests pass
+        - label: Training data PII audit complete
+        - label: DPIA updated (if applicable)
+        - label: k-anonymity ≥ 5 validated

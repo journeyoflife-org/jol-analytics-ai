@@ -1,0 +1,15 @@
+# Code Owners
+* @jol-platform-team
+
+# Security-sensitive files require security team review
+/src/jol_analytics_ai/security/ @jol-security-team
+/src/jol_analytics_ai/anonymization/ @jol-security-team
+/compliance/ @jol-compliance-team
+/docs/DPIA-template.md @jol-compliance-team
+
+# ML models require data science review
+/src/jol_analytics_ai/ml/ @jol-ml-team
+/model_cards/ @jol-ml-team
+
+# Infrastructure
+/.github/workflows/ @jol-devops-team
