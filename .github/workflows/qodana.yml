@@ -15,7 +15,7 @@ jobs:
       checks: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Qodana Scan
         uses: JetBrains/qodana-action@v2025.1
