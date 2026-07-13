@@ -7,13 +7,18 @@ Usage:
 
 import argparse
 import sys
-from pathlib import Path
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="k-Anonymity Verifier")
-    parser.add_argument("--check", action="store_true", help="CI mode: exit with error if non-compliant")
-    parser.add_argument("--k", type=int, default=5, help="Required k value (default: 5)")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="CI mode: exit with error if non-compliant",
+    )
+    parser.add_argument(
+        "--k", type=int, default=5, help="Required k value (default: 5)"
+    )
     parser.add_argument("--file", type=str, help="CSV file to check")
     args = parser.parse_args()
 
@@ -23,6 +28,7 @@ def main() -> int:
         return 0
 
     import pandas as pd
+
     from jol_analytics_ai.anonymization.k_anonymity import validate_k_anonymity
 
     df = pd.read_csv(args.file)

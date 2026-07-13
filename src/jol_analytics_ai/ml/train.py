@@ -10,6 +10,7 @@ from jol_analytics_ai.logging import get_logger
 logger = get_logger(__name__)
 
 
+# noinspection PyPep8Naming
 def train_model(
     model: BaseEstimator,
     X_train: pd.DataFrame,

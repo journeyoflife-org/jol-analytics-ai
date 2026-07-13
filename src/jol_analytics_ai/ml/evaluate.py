@@ -17,6 +17,7 @@ from jol_analytics_ai.logging import get_logger
 logger = get_logger(__name__)
 
 
+# noinspection PyPep8Naming
 def evaluate_classification(
     model: BaseEstimator,
     X_test: pd.DataFrame,
@@ -36,6 +37,7 @@ def evaluate_classification(
     return metrics
 
 
+# noinspection PyPep8Naming
 def evaluate_regression(
     model: BaseEstimator,
     X_test: pd.DataFrame,

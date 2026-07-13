@@ -11,22 +11,25 @@ logger = get_logger(__name__)
 class VectorAccessController:
     """Enforce role-based access to vector store operations."""
 
-    def check_read(self, role: Role) -> bool:
+    @staticmethod
+    def check_read(role: Role) -> bool:
         """Check if role can read from the vector store."""
         decision = check_access(role, Permission.ACCESS_RAG)
         if not decision.allowed:
             logger.warning("Vector store READ denied for role '%s'", role.value)
         return decision.allowed
 
-    def check_write(self, role: Role) -> bool:
+    @staticmethod
+    def check_write(role: Role) -> bool:
         """Check if role can write to the vector store."""
         decision = check_access(role, Permission.WRITE_DATA)
         if not decision.allowed:
             logger.warning("Vector store WRITE denied for role '%s'", role.value)
         return decision.allowed
 
+    @staticmethod
     def filter_by_tenant(
-        self, results: list[dict[str, Any]], tenant_id: str
+        results: list[dict[str, Any]], tenant_id: str
     ) -> list[dict[str, Any]]:
         """Filter retrieval results by tenant for multi-tenant isolation."""
         return [

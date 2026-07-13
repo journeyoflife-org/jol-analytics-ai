@@ -39,7 +39,9 @@ def create_model_card(model_name: str) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Model Card Builder")
-    parser.add_argument("--validate", action="store_true", help="Validate existing model cards")
+    parser.add_argument(
+        "--validate", action="store_true", help="Validate existing model cards"
+    )
     parser.add_argument("--model-name", type=str, help="Create card for model")
     args = parser.parse_args()
 

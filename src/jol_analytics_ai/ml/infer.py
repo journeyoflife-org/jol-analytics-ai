@@ -20,6 +20,7 @@ def load_model(model_path: str | Path) -> BaseEstimator:
     return model
 
 
+# noinspection PyPep8Naming
 def predict(model: BaseEstimator, X: pd.DataFrame) -> Any:
     """Run inference and log the request."""
     logger.info("Running inference on %d samples", len(X))
@@ -28,6 +29,7 @@ def predict(model: BaseEstimator, X: pd.DataFrame) -> Any:
     return predictions
 
 
+# noinspection PyPep8Naming
 def predict_proba(model: BaseEstimator, X: pd.DataFrame) -> Any:
     """Run probabilistic inference (classification)."""
     logger.info("Running probabilistic inference on %d samples", len(X))

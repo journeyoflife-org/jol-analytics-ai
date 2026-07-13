@@ -30,7 +30,9 @@ def audit_file(file_path: Path) -> list[dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="PII Audit Scanner")
-    parser.add_argument("--ci-mode", action="store_true", help="Exit with error if PII found")
+    parser.add_argument(
+        "--ci-mode", action="store_true", help="Exit with error if PII found"
+    )
     parser.add_argument("--path", default="src/", help="Path to scan")
     args = parser.parse_args()
 

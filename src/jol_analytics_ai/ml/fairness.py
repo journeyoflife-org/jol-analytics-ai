@@ -11,6 +11,7 @@ from jol_analytics_ai.logging import get_logger
 logger = get_logger(__name__)
 
 
+# noinspection PyPep8Naming
 def demographic_parity(
     model: BaseEstimator,
     X: pd.DataFrame,
@@ -33,6 +34,7 @@ def demographic_parity(
     return rates
 
 
+# noinspection PyPep8Naming
 def equalized_odds(
     model: BaseEstimator,
     X: pd.DataFrame,
@@ -63,6 +65,7 @@ def equalized_odds(
     return results
 
 
+# noinspection PyPep8Naming
 def fairness_report(
     model: BaseEstimator,
     X: pd.DataFrame,

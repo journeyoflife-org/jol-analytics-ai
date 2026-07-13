@@ -15,7 +15,7 @@ logger = get_logger(__name__)
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+async def lifespan(_application: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifecycle manager."""
     logger.info("Starting jol-analytics-ai v%s", __version__)
     yield
