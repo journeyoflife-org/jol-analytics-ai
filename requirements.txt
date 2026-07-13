@@ -20,3 +20,7 @@ bcrypt>=4.0.0,<4.1.0
 python-multipart>=0.0.6
 httpx>=0.26.0
 joblib>=1.3.0
+# Pin pathspec to the highest version that satisfies both apache-airflow (>=0.9)
+# and dbt-core (<0.13).  black/mypy require >=1.0 which is irreconcilable with
+# dbt-core's upper bound; both tools still function correctly with 0.12.x.
+pathspec==0.12.1
