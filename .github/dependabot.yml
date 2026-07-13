@@ -15,6 +15,15 @@ updates:
       # internals).  Re-enable once passlib is migrated to direct bcrypt or argon2-cffi.
       - dependency-name: "bcrypt"
         versions: [">=4.1.0"]
+      # dbt-core pins pathspec<0.13.  pathspec>=1.0 also breaks black<25 and mypy<2,
+      # which are pinned for the same reason.  Re-enable only after dbt-core is removed
+      # or relaxes its pathspec upper bound.
+      - dependency-name: "pathspec"
+        versions: [">=0.13"]
+      - dependency-name: "black"
+        versions: [">=25"]
+      - dependency-name: "mypy"
+        versions: [">=2"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
