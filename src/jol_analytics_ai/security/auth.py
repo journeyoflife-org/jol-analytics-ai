@@ -21,13 +21,25 @@ def _validate_password_length(password: str) -> None:
 
 
 def hash_password(password: str) -> str:
-    """Hash a plaintext password."""
+    """Hash a plaintext password using bcrypt via passlib.
+
+    Defense-in-depth: explicitly rejects passwords exceeding bcrypt's 72-byte
+    limit to prevent silent truncation, regardless of the underlying bcrypt
+    version behaviour.
+
+    Raises:
+        ValueError: If *password* exceeds 72 bytes when UTF-8 encoded.
+    """
     _validate_password_length(password)
     return pwd_context.hash(password)  # type: ignore[no-any-return]
 
 
 def verify_password(plain: str, hashed: str) -> bool:
-    """Verify a plaintext password against its hash."""
+    """Verify a plaintext password against its hash.
+
+    Raises:
+        ValueError: If *plain* exceeds 72 bytes when UTF-8 encoded.
+    """
     _validate_password_length(plain)
     return pwd_context.verify(plain, hashed)  # type: ignore[no-any-return]
 

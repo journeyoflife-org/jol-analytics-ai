@@ -10,6 +10,11 @@ updates:
     labels:
       - "dependencies"
       - "security"
+    ignore:
+      # passlib 1.7.4 is incompatible with bcrypt >= 4.1.0 (calls removed C-binding
+      # internals).  Re-enable once passlib is migrated to direct bcrypt or argon2-cffi.
+      - dependency-name: "bcrypt"
+        versions: [">=4.1.0"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
