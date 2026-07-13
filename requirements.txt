@@ -14,7 +14,9 @@ numpy>=1.26.0
 chromadb>=0.4.22
 sentence-transformers>=2.5.0
 python-jose>=3.3.0
-cryptography>=42.0.0
+# Minimum 46.0.7: resolves Qodana CVE flag on 42.x (ASN.1 decoder vulnerabilities).
+# python-jose 3.5.0 does NOT depend on cryptography, so this is a safe upgrade.
+cryptography>=46.0.7
 passlib>=1.7.4
 # Pinned <4.1.0: passlib 1.7.4 calls bcrypt C-binding internals that changed in
 # bcrypt 4.1.0.  Upgrading bcrypt without first migrating off passlib will
