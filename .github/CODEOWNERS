@@ -1,15 +1,15 @@
 # Code Owners
-*                                   @jol-platform-team
+*                                   @journeyoflife-org/devops
 
 # Security-sensitive files require security team review
-/src/jol_analytics_ai/security/     @jol-security-team
-/src/jol_analytics_ai/anonymization/ @jol-security-team
-/compliance/                        @jol-compliance-team
-/docs/DPIA-template.md              @jol-compliance-team
+/src/jol_analytics_ai/security/     @journeyoflife-org/security
+/src/jol_analytics_ai/anonymization/ @journeyoflife-org/security
+/compliance/                        @journeyoflife-org/security
+/docs/DPIA-template.md              @journeyoflife-org/security
 
 # ML models require data science review
-/src/jol_analytics_ai/ml/           @jol-ml-team
-/model_cards/                       @jol-ml-team
+/src/jol_analytics_ai/ml/           @journeyoflife-org/data
+/model_cards/                       @journeyoflife-org/data
 
 # Infrastructure
-/.github/workflows/                 @jol-devops-team
+/.github/workflows/                 @journeyoflife-org/devops
