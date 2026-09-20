@@ -11,6 +11,9 @@ on:
       - 'model_cards/**'
       - 'compliance/**'
 
+permissions:
+  contents: read
+
 jobs:
   compliance-check:
     runs-on: ubuntu-latest
