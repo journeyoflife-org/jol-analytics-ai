@@ -1,0 +1,18 @@
+[tools]
+python = "3.12"
+
+[tasks.deps]
+description = "Install runtime + dev deps the same way CI does (pip, unchanged resolution)"
+run = "pip install -e . && pip install -r requirements-dev.txt"
+
+[tasks.lint]
+description = "ruff + mypy + black (mirrors CI Lint step)"
+run = "ruff check src/ tests/ && mypy src/ && black --check src/ tests/"
+
+[tasks.test]
+description = "pytest with coverage (mirrors CI Test step)"
+run = "pytest tests/ --cov=src/jol_analytics_ai --cov-report=term-missing"
+
+[tasks.audit]
+description = "pip-audit (mirrors CI Dependency audit; non-fatal)"
+run = "pip-audit -r requirements.txt --progress-spinner off || true"
